@@ -83,21 +83,26 @@ var data=[
 
 function allStudents(){
   document.getElementById('dataID').innerHTML = ""
- data.map(element=>element.students.map(element2=>document.getElementById('dataID').innerHTML += "<li>"+element2.name+"</li>") )
+ data.forEach(element=>element.students.forEach(element2=>document.getElementById('dataID').innerHTML += "<li>"+element2.name+"</li>") )
 }
 
 function studentsSorted(){
   document.getElementById('dataID2').innerHTML = ""
- var array=data.map(element=>element.students.map(element2=>element2 ))
-array.sort(name);
-array.map(element=>element.students.map(element2=>document.getElementById('dataID2').innerHTML += "<li>"+element2.name+"</li>") )
+  var names=[]
+ data.forEach(element=>element.students.forEach(element2=>names.push(element2.name) ))
+
+names.sort()
+names.forEach(element=>document.getElementById('dataID2').innerHTML += "<li>"+element+"</li>")
 
 }
 
 function olderStudents(){
   document.getElementById('dataID3').innerHTML = ""
- data.map(element=>element.students.map(element2=>document.getElementById('dataID3').innerHTML += "<li>"+element2.name+"</li>") )
-}
+  var teachers=[]
+  data.forEach(element=>element.active?element.students.forEach(element2=>element2.age>20?teachers.push(element2.name):teachers.sort() ):teachers.sort());
+    teachers.forEach(element=>document.getElementById('dataID3').innerHTML += "<li>"+element+"</li>")
+  }
+
 
 var buttonStyle = {
   margin: '10px 10px 10px 0'
