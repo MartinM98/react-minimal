@@ -5,6 +5,11 @@ const generateArray=(n)=>
 Array.from({length: n}, (v, k) => k+1)
 )
 
+const generateRandomArray=(n)=>
+(
+Array.from({length: n}, (v, k) => Math.floor(Math.random() * 25) + 1)
+)
+
 const MyApp = () => (
   <div>
   <h1>Minimal React mrugalam</h1>
@@ -12,6 +17,8 @@ const MyApp = () => (
   <ul>
     <p>An array of integers from 1 to n=10</p>
       {generateArray(10).map(element => <li>{element}</li>)}
+      <p>An array of n=10 random integers from 1 to 25</p>
+      {generateRandomArray(10).map(element => <li>{element}</li>)}
 
     </ul>
 
