@@ -1,7 +1,7 @@
 import React from 'react'
 
-const App = () => (
-  <h1>Minimal React</h1>  
+const MyApp = () => (
+  <h1>Minimal React mrugalam</h1>   
 )
 
-export default App
+export default MyApp
