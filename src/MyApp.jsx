@@ -18,6 +18,78 @@ const generateSquareArray=()=>
 Array.from(myArray2, element => Math.floor(Math.sqrt(element)))
 )
 
+
+var data=[
+  {
+    "teacherName": "Jan Nowak",
+    "teacherAge": 36,
+    "active": true,
+    "students": [
+      {
+        "name": "Maciej Janosz",
+        "age": 12
+      },
+      {
+        "name": "Wojciech Kowalski",
+        "age": 15
+      },
+      {
+        "name": "Wioletta PoznaĹska",
+        "age": 1000000
+      }
+    ]
+  },
+  {
+    "teacherName": "Mariusz Flasinski",
+    "teacherAge": 56,
+    "active": true,
+    "students": [
+      {
+        "name": "Jan Kot",
+        "age": 12
+      },
+      {
+        "name": "Jan Ziobro",
+        "age": 15
+      },
+      {
+        "name": "Adam Malysz",
+        "age": 41
+      }
+    ]
+  },
+  {
+    "teacherName": "Wojciech Kuzak",
+    "teacherAge": 44,
+    "active": false,
+    "students": [
+      {
+        "name": "Janina Wronska",
+        "age": 22
+      },
+      {
+        "name": "John Dover",
+        "age": 7
+      },
+      {
+        "name": "Emil Petterson",
+        "age": 46
+      }
+    ]
+  }
+]
+
+function allStudents(){
+  document.getElementById('dataID').innerHTML = ""
+  data.forEach(element=>element.students.forEach(element2=>document.getElementById('dataID').innerHTML += "<li>"+element2.name+"</li>") )}
+
+
+
+
+var buttonStyle = {
+  margin: '10px 10px 10px 0'
+};
+
 const MyApp = () => (
   <div>
   <h1>Minimal React mrugalam</h1>
@@ -32,6 +104,11 @@ const MyApp = () => (
       <p>Square root values of each number belonging to the array</p>
       {generateSquareArray().map(element => <li>{element}</li>)}
     </ul>
+    <button style={buttonStyle} onClick={allStudents}>All students</button>
+          <ul id="dataID"></ul>
+
+
+
 
   </div>)
 
