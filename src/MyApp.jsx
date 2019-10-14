@@ -92,6 +92,12 @@ function allStudents(){
 
   }
 
+  function olderStudents(){
+    document.getElementById('dataID3').innerHTML = ""
+    var teachers=[]
+    data.forEach(element=>element.active?element.students.forEach(element2=>element2.age>20?teachers.push(element2.name):teachers.sort() ):teachers.sort());
+      teachers.forEach(element=>document.getElementById('dataID3').innerHTML += "<li>"+element+"</li>")  }
+
 
 var buttonStyle = {
   margin: '10px 10px 10px 0'
@@ -115,6 +121,8 @@ const MyApp = () => (
           <ul id="dataID"></ul>
       <button style={buttonStyle} onClick={studentsSorted}>Sort students</button>
       <ul id="dataID2"></ul>
+      <button style={buttonStyle} onClick={olderStudents}>Older students</button>
+        <ul id="dataID3"></ul>
 
 
 
