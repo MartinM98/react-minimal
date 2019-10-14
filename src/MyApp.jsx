@@ -83,7 +83,14 @@ function allStudents(){
   document.getElementById('dataID').innerHTML = ""
   data.forEach(element=>element.students.forEach(element2=>document.getElementById('dataID').innerHTML += "<li>"+element2.name+"</li>") )}
 
+  function studentsSorted(){
+    document.getElementById('dataID2').innerHTML = ""
+    var names=[]
+    data.forEach(element=>element.students.forEach(element2=>names.push(element2.name) ))
+   names.sort()
+   names.forEach(element=>document.getElementById('dataID2').innerHTML += "<li>"+element+"</li>")
 
+  }
 
 
 var buttonStyle = {
@@ -106,6 +113,8 @@ const MyApp = () => (
     </ul>
     <button style={buttonStyle} onClick={allStudents}>All students</button>
           <ul id="dataID"></ul>
+      <button style={buttonStyle} onClick={studentsSorted}>Sort students</button>
+      <ul id="dataID2"></ul>
 
 
 
