@@ -15,7 +15,7 @@ const myArray=[2, 56, 23, 88, 17, 4];
 const myArray2=[2, 5, 8, 10];
 const generateSquareArray=()=>
 (
-Array.from(myArray2, element => Math.floor(Math.sqrt(element)))
+Array.from(myArray2, element => Math.sqrt(element))
 )
 
 
