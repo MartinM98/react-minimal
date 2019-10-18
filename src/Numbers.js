@@ -9,15 +9,18 @@ constructor(props)
 super(props);
 this.state={
     a:0,
-   b:0
+   b:0,
+   array:[],
+   myArray:[],
+   flag:false
 }
 this.counter=1;
-this.array=new Array
-this.flag=false
+
 
 this.aFieldValueChangeHandler=this.aFieldValueChangeHandler.bind(this)
 this.bFieldValueChangeHandler=this.bFieldValueChangeHandler.bind(this)
 this.processArray=this.processArray.bind(this)
+this.generateArray=this.generateArray.bind(this)
 this.processArrayFlag=this.processArrayFlag.bind(this)
 }
 
@@ -26,57 +29,57 @@ aFieldValueChangeHandler(ev)
 {
 
     console.log("Value changed a:"+ev.target.value)
-    this.generateArray(ev.target.value,this.state.b)
+    
     this.setState({a:ev.target.value});
+    this.generateArray(ev.target.value,this.state.b)
 }
 bFieldValueChangeHandler(ev)
 {
 
     console.log("Value changed b:"+ev.target.value)
-    this.generateArray(this.state.a,ev.target.value)
+   
     this.setState({b:ev.target.value});
-
+    this.generateArray(this.state.a,ev.target.value)
     
 }
 
 generateArray(a,b)
 {
-    document.getElementById('listID').innerHTML = ""
     a=parseInt(a)
     b=parseInt(b)
     if(a<b&&a>0)
     {
-        this.array=[]
+        this.state.array=[]
         var i=a+1
         var j
         for(j=0;j<b-a-1;i++,j++)
         {
-            this.array[j]=i;
+            this.state.array[j]=i;
         }
-
-        this.array.forEach(element=>document.getElementById('listID').innerHTML += "<li>"+element+"</li>")
-        if(this.flag)
-    {
-        this.processArray()
-    }
     }
     else
     {
-        document.getElementById('processArrayID').innerHTML = ""
+        this.state.array=[]
     }
-    
+    if(this.state.flag)
+    {
+    this.processArray();
+    }
 }
 
 processArray()
 {
-    document.getElementById('processArrayID').innerHTML = ""
-   var myArray=Array.from(this.array, element => Math.sqrt(element))
-    myArray.forEach(element=>document.getElementById('processArrayID').innerHTML += "<li>"+element+"</li>")
+
+   this.state.myArray=Array.from(this.state.array, element => Math.sqrt(element))
+   
 }
 processArrayFlag()
 {
-this.flag=true
-this.processArray();
+    
+    this.setState({flag:true});
+    this.processArray();
+    
+    
 }
 
   render() {
@@ -89,9 +92,15 @@ this.processArray();
        <br/>
        <label>Number b: </label>
        <input type="number" onChange={this.bFieldValueChangeHandler} />
-       <ul id="listID"/>
+       <ul>
+          {this.state.array.map(item => (
+            <li key={item}>{item}</li>))}
+        </ul>
        <button onClick={this.processArrayFlag}>Process array</button>
-        <ul id="processArrayID"/>
+       <ul>
+          {this.state.myArray.map(item => (
+            <li key={item}>{item}</li>))}
+        </ul>
         </div>
     )
     console.timeEnd("render - "+this.counter.toString())
