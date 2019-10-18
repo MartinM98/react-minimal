@@ -13,7 +13,7 @@ this.state={
    array:[],
 
 }
-
+this.counter=1;
 
 
 this.aFieldValueChangeHandler=this.aFieldValueChangeHandler.bind(this)
@@ -64,8 +64,8 @@ generateArray(a,b)
 }
 
 
-
   render() {
+      console.time("render - "+this.counter.toString())
     const content=(
         <div>
         <label>Number a: </label>
@@ -81,7 +81,8 @@ generateArray(a,b)
 
         </div>
     )
-
+    console.timeEnd("render - "+this.counter.toString())
+    this.counter++;
     return content
 
   }
