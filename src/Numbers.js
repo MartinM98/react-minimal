@@ -11,6 +11,7 @@ this.state={
     a:0,
    b:0
 }
+this.counter=1;
 
 this.aFieldValueChangeHandler=this.aFieldValueChangeHandler.bind(this)
 this.bFieldValueChangeHandler=this.bFieldValueChangeHandler.bind(this)
@@ -18,15 +19,18 @@ this.bFieldValueChangeHandler=this.bFieldValueChangeHandler.bind(this)
 }
 aFieldValueChangeHandler(ev)
 {
+
     console.log("Value changed a:"+ev.target.value)
     this.generateArray(ev.target.value,this.state.b)
     this.setState({a:ev.target.value});
 }
 bFieldValueChangeHandler(ev)
 {
+
     console.log("Value changed b:"+ev.target.value)
     this.generateArray(this.state.a,ev.target.value)
     this.setState({b:ev.target.value});
+
     
 }
 
@@ -51,7 +55,8 @@ generateArray(a,b)
 }
 
   render() {
-    return (
+      console.time("render - "+this.counter.toString())
+    const content=(
         <div>
         <label>Number a: </label>
         <input type="number" onChange={this.aFieldValueChangeHandler} />
@@ -61,7 +66,11 @@ generateArray(a,b)
        <input type="number" onChange={this.bFieldValueChangeHandler} />
        <ul id="listID"/>
         </div>
-    );
+    )
+    console.timeEnd("render - "+this.counter.toString())
+    this.counter++;
+    return content
+
   }
 }
 
