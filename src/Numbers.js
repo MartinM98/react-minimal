@@ -11,16 +11,17 @@ this.state={
     a:0,
    b:0,
    array:[],
-
+   myArray:[],
+   flag:false
 }
 this.counter=1;
 
 
 this.aFieldValueChangeHandler=this.aFieldValueChangeHandler.bind(this)
 this.bFieldValueChangeHandler=this.bFieldValueChangeHandler.bind(this)
-
+this.processArray=this.processArray.bind(this)
 this.generateArray=this.generateArray.bind(this)
-
+this.processArrayFlag=this.processArrayFlag.bind(this)
 }
 
 
@@ -60,9 +61,26 @@ generateArray(a,b)
     {
         this.state.array=[]
     }
-
+    if(this.state.flag)
+    {
+    this.processArray();
+    }
 }
 
+processArray()
+{
+
+   this.state.myArray=Array.from(this.state.array, element => Math.sqrt(element))
+   
+}
+processArrayFlag()
+{
+    
+    this.setState({flag:true});
+    this.processArray();
+    
+    
+}
 
   render() {
       console.time("render - "+this.counter.toString())
@@ -78,7 +96,11 @@ generateArray(a,b)
           {this.state.array.map(item => (
             <li key={item}>{item}</li>))}
         </ul>
-
+       <button onClick={this.processArrayFlag}>Process array</button>
+       <ul>
+          {this.state.myArray.map(item => (
+            <li key={item}>{item}</li>))}
+        </ul>
         </div>
     )
     console.timeEnd("render - "+this.counter.toString())
