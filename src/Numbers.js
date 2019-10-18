@@ -13,11 +13,12 @@ this.state={
 }
 this.counter=1;
 this.array=new Array
+this.flag=false
 
 this.aFieldValueChangeHandler=this.aFieldValueChangeHandler.bind(this)
 this.bFieldValueChangeHandler=this.bFieldValueChangeHandler.bind(this)
 this.processArray=this.processArray.bind(this)
-
+this.processArrayFlag=this.processArrayFlag.bind(this)
 }
 
 
@@ -54,6 +55,14 @@ generateArray(a,b)
         }
 
         this.array.forEach(element=>document.getElementById('listID').innerHTML += "<li>"+element+"</li>")
+        if(this.flag)
+    {
+        this.processArray()
+    }
+    }
+    else
+    {
+        document.getElementById('processArrayID').innerHTML = ""
     }
     
 }
@@ -63,6 +72,11 @@ processArray()
     document.getElementById('processArrayID').innerHTML = ""
    var myArray=Array.from(this.array, element => Math.sqrt(element))
     myArray.forEach(element=>document.getElementById('processArrayID').innerHTML += "<li>"+element+"</li>")
+}
+processArrayFlag()
+{
+this.flag=true
+this.processArray();
 }
 
   render() {
@@ -76,8 +90,8 @@ processArray()
        <label>Number b: </label>
        <input type="number" onChange={this.bFieldValueChangeHandler} />
        <ul id="listID"/>
-       <button onClick={this.processArray}>Process array</button>
-        <ul id="processArrayID"></ul>
+       <button onClick={this.processArrayFlag}>Process array</button>
+        <ul id="processArrayID"/>
         </div>
     )
     console.timeEnd("render - "+this.counter.toString())
